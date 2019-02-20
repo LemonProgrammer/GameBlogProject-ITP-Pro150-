@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBlogApplication", "Game
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBlogApplication.Tests", "GameBlogApplication.Tests\GameBlogApplication.Tests.csproj", "{C0BCD9DC-63E0-4330-B91C-A935FC181913}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBlogService", "GameBlogService\GameBlogService.csproj", "{05CCDE5A-31D4-4EC5-8FFC-F2C1EF856F1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C0BCD9DC-63E0-4330-B91C-A935FC181913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0BCD9DC-63E0-4330-B91C-A935FC181913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0BCD9DC-63E0-4330-B91C-A935FC181913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05CCDE5A-31D4-4EC5-8FFC-F2C1EF856F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05CCDE5A-31D4-4EC5-8FFC-F2C1EF856F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05CCDE5A-31D4-4EC5-8FFC-F2C1EF856F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05CCDE5A-31D4-4EC5-8FFC-F2C1EF856F1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
