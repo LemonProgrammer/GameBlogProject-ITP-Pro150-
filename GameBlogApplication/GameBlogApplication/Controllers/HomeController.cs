@@ -15,14 +15,14 @@ namespace GameBlogApplication.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Aaaaaaaaaall about us!!!";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Um..about contacting us...";
 
             return View();
         }
