@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #383838;
+    background-color: #2A3021;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -76,6 +76,12 @@ h3 {
     font-size: 20px;
 }
 
+h4 {
+    font-family: 'Press Start';
+    color: #ffd533;
+    font-size: 16px;
+}
+
 p {
     font-family: Classic;
     color: #97ff81;
@@ -86,6 +92,12 @@ address {
     font-family: Classic;
     color: #00f712;
     font-size: 22px;
+}
+
+.form-group {
+    font-family: 'Press Start';
+    color: #00f712;
+    font-size: 10px;
 }
 
 @font-face {
