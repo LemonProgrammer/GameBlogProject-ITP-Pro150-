@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #383838;
+    background-color: #2A3021;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,7 +27,6 @@ textarea {
 .jumbotron {
     background-color: #00f712;
     border: solid 3px black;
-    
     margin-top: 30px;
 }
 
@@ -37,12 +36,126 @@ textarea {
 
 .jumbotron h1 {
     -webkit-text-stroke-color: black;
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1.5px;
     font-size: 63px;
     color: #ffd533;
+    font-family: Athens;
 }
 
 .jumbotron p {
-    font-size: 23px;
+    font-size: 22px;
     color: black;
+    font-family: AlphaBeta;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    color: #ffd533;
+    font-family: Athens;
+    font-size: 22px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #97ff81;
+    font-family: Classic;
+    font-size: 20px;
+}
+
+.jumbotron > hr {
+    border-top: 3px solid #ffd533;
+}
+
+h2 {
+    font-family: Athens;
+    font-size: 46px;
+    color: #ffd533;
+}
+
+h3 {
+    font-family: 'Press Start';
+    color: #ffd533;
+    font-size: 20px;
+}
+
+h4 {
+    font-family: 'Press Start';
+    color: #ffd533;
+    font-size: 16px;
+}
+
+p {
+    font-family: Classic;
+    color: #97ff81;
+    font-size: 20px;
+}
+
+address {
+    font-family: Classic;
+    color: #00f712;
+    font-size: 22px;
+}
+
+.form-group {
+    font-family: 'Press Start';
+    color: #00f712;
+    font-size: 10px;
+}
+
+@font-face {
+    font-family: 'AlphaBeta';
+    src: url(../fonts/alphbeta.ttf);
+}
+
+@font-face {
+    font-family: 'Athens';
+    src: url(../fonts/AthensClassic.ttf);
+}
+
+@font-face {
+    font-family: 'Classic';
+    src: url(../fonts/classic_memesbruh03.ttf);
+}
+
+@font-face {
+    font-family: 'Dina';
+    src: url(../fonts/Dina.fon);
+}
+
+@font-face {
+    font-family: 'Display';
+    src: url(../fonts/Display.ttf);
+}
+
+@font-face {
+    font-family: 'Editia';
+    src: url(../fonts/EDITIA__.TTF);
+}
+
+@font-face {
+    font-family: 'Lunch';
+    src: url(../fonts/lunchds.ttf);
+}
+
+@font-face {
+    font-family: 'Perfect';
+    src: url('../fonts/Perfect DOS VGA 437.ttf');
+}
+
+@font-face {
+    font-family: 'Press Start';
+    src: url(../fonts/PrStart.ttf);
+}
+
+@font-face {
+    font-family: 'Thirteen';
+    src: url(../fonts/thirteen_pixel_fonts.ttf);
+}
+
+@font-face {
+    font-family: 'Victor';
+    src: url(../fonts/victor-pixel.ttf);
+}
+
+@font-face {
+    font-family: 'Yapix';
+    src: url(../fonts/yapix.ttf);
 }
