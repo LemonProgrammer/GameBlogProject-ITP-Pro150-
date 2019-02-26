@@ -244,6 +244,18 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\alphbeta.ttf" />
+    <Content Include="fonts\AthensClassic.ttf" />
+    <Content Include="fonts\classic_memesbruh03.ttf" />
+    <Content Include="fonts\Dina.fon" />
+    <Content Include="fonts\Display.ttf" />
+    <Content Include="fonts\EDITIA__.TTF" />
+    <Content Include="fonts\lunchds.ttf" />
+    <Content Include="fonts\Perfect DOS VGA 437.ttf" />
+    <Content Include="fonts\PrStart.ttf" />
+    <Content Include="fonts\thirteen_pixel_fonts.ttf" />
+    <Content Include="fonts\victor-pixel.ttf" />
+    <Content Include="fonts\yapix.ttf" />
     <EntityDeploy Include="ITPData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ITPData.Designer.cs</LastGenOutput>
