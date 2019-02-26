@@ -17,6 +17,7 @@ namespace GameBlogApplication.Controllers
         {
             ViewBag.Message = "Aaaaaaaaaall about us!!!";
 
+
             return View();
         }
 
