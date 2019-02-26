@@ -15,7 +15,7 @@ namespace GameBlogApplication.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Fernando's Spaghetti";
 
             return View();
         }
