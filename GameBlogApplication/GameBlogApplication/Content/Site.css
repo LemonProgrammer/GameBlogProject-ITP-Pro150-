@@ -159,3 +159,33 @@ address {
     font-family: 'Yapix';
     src: url(../fonts/yapix.ttf);
 }
+
+.discussionImage img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 500px;
+    max-width: 500px;
+    padding-bottom: 20px;
+}
+
+.discussionImage {
+    background-color: #3C452F
+}
+
+.discussions {
+    border: 2px solid #97ff81;
+}
+
+.discussionText {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+}
+
+.discussionHeader {
+    text-decoration: underline;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
