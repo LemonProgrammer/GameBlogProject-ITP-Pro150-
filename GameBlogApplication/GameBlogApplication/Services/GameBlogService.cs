@@ -1,7 +1,9 @@
-﻿using System;
+﻿using GameBlogService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 
 namespace GameBlogApplication.Services
 {
@@ -31,7 +33,7 @@ namespace GameBlogApplication.Services
          */
 
             //Users
-        public void GetUserByID(int id)
+        public UserModel GetUserByID(int id)
         {
             User user = null;
             using (var context = new ITPEntities())
@@ -41,69 +43,69 @@ namespace GameBlogApplication.Services
 
             if(user == null)
             {
-                //return null;
+                return null;
             }
 
-            //UserModel result = new UserModel()
-            //{
-            //    AccountID = user.AccountID,
-            //    FirstName = user.FirstName,
-            //    LastName = user.LastName,
-            //    Username = user.Username,
-            //    Email = user.Email,
-            //    Password = user.Password,
-            //    Age = user.Age,
-            //    Birthday = user.Birthday,
-            //    ProfileImage = user.ProfileImage,
-            //    Bio = user.Bio
-            //};
+            UserModel result = new UserModel()
+            {
+                AccountID = user.AccountID,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password,
+                Age = user.Age,
+                Birthday = user.Birthday,
+                ProfileImage = user.ProfileImage,
+                Bio = user.Bio
+            };
 
-            //return result;
+            return result;
         }
 
-        public void CreateUser()//UserModel model)
+        public void CreateUser(UserModel model)
         {
             using (var context = new ITPEntities())
             {
-                //User newUser = new User()
-                //{
-                //    FirstName = Models.FirstName,
-                //    LastName = model.LastName,
-                //    Username = model.Username,
-                //    Email = model.Email,
-                //    Password = model.Password,
-                //    Age = model.Age,
-                //    Birthday = model.Birthday,
-                //    ProfileImage = model.ProfileImage,
-                //    Bio = model.Bio
-                //};
+                User newUser = new User()
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Username = model.Username,
+                    Email = model.Email,
+                    Password = model.Password,
+                    Age = model.Age,
+                    Birthday = model.Birthday,
+                    ProfileImage = model.ProfileImage,
+                    Bio = model.Bio
+                };
 
 
-                //context.Users.Add(newUser);
-                //context.SaveChanges();
+                context.Users.Add(newUser);
+                context.SaveChanges();
 
-                //model.AccountID = newUser.AccountID;
+                model.AccountID = newUser.AccountID;
             }
         }
 
-        public void UpdateUser()//UserModel model)
+        public void UpdateUser(UserModel model)
         {
-            //using (var context = new ITPEntities())
-            //{
-            //    User userToUpdate = context.Users.FirstOrDefault(u => u.AccountID == model.AccountID);
+            using (var context = new ITPEntities())
+            {
+                User userToUpdate = context.Users.FirstOrDefault(u => u.AccountID == model.AccountID);
 
-            //    userToUpdate.FirstName = model.FirstName;
-            //    userToUpdate.LastName = model.LastName;
-            //    userToUpdate.Username = model.Username;
-            //    userToUpdate.Email = model.Email;
-            //    userToUpdate.Password = model.Password;
-            //    userToUpdate.Age = model.Age;
-            //    userToUpdate.Birthday = model.Birthday;
-            //    userToUpdate.ProfileImage = model.ProfileImage;
-            //    userToUpdate.Bio = model.Bio;
+                userToUpdate.FirstName = model.FirstName;
+                userToUpdate.LastName = model.LastName;
+                userToUpdate.Username = model.Username;
+                userToUpdate.Email = model.Email;
+                userToUpdate.Password = model.Password;
+                userToUpdate.Age = model.Age;
+                userToUpdate.Birthday = model.Birthday;
+                userToUpdate.ProfileImage = model.ProfileImage;
+                userToUpdate.Bio = model.Bio;
 
-            //    context.SaveChanges();
-            //}
+                context.SaveChanges();
+            }
         }
 
         public void DeleteUserById(int id)
@@ -138,7 +140,7 @@ namespace GameBlogApplication.Services
 
         //UserDiscussions
 
-        public void GetUserDiscussionByID(int id)
+        public UserDiscussionModel GetUserDiscussionByID(int id)
         {
             UserDiscussion ud = null;
 
@@ -149,18 +151,18 @@ namespace GameBlogApplication.Services
 
             if (ud == null)
             {
-                //return null;
+                return null;
             }
 
-            //UserDiscussionModel result = new UserDiscussionModel()
-            //{
+            UserDiscussionModel result = new UserDiscussionModel()
+            {
 
-            //    UserDiscussionID = ud.DiscussionID,
-            //    AcountId = ud.AccountId,
-            //    DiscussionId = ud.DiscussionId
-            //};
+                UserDiscussionID = ud.UserDiscussionID,
+                AccountID = ud.AccountId,
+                DiscussionID = ud.DiscussionId
+            };
 
-            //return result;
+            return result;
 
         }
 
@@ -178,21 +180,21 @@ namespace GameBlogApplication.Services
             return userDiscussionWithUser;
         }
 
-        public void CreateUserDiscussion(int userID, int discussionID)//UserDiscussionModel model
+        public void CreateUserDiscussion(UserDiscussionModel model, int userID, int discussionID)
         {
-            //using (var context = new ITPEntities())
-            //{
-            //    UserDiscussion newUD = new UserDiscussion
-            //    {
-            //        AccountId = userID,
-            //        DiscussionId = discussionID
-            //    };
+            using (var context = new ITPEntities())
+            {
+                UserDiscussion newUD = new UserDiscussion
+                {
+                    AccountId = userID,
+                    DiscussionId = discussionID
+                };
 
-            //    context.UserDiscussions.Add(newUD);
-            //    context.SaveChanges();
-
-            //    model.UserDiscussionID = newUD.UserDiscussionID;
-            //}
+                context.UserDiscussions.Add(newUD);
+                context.SaveChanges();
+                
+                model.UserDiscussionID = newUD.UserDiscussionID;
+            }
         }
 
         public void DeleteUserDiscussionByID(int id)
@@ -226,7 +228,7 @@ namespace GameBlogApplication.Services
         }
 
         //Discussions
-        public void GetDiscussionByID(int id)
+        public DiscussionModel GetDiscussionByID(int id)
         {
             Discussion discussion = null;
 
@@ -236,22 +238,22 @@ namespace GameBlogApplication.Services
             }
 
             if (discussion == null) {
-                //return null;
+                return null;
             }
 
-            //DiscussionModel result = new DiscussionModel()
-            //{
+            DiscussionModel result = new DiscussionModel()
+            {
 
-            //    DiscussionID = discussion.DiscussionID,
-            //    Title = discussion.Title,
-            //    ContentText = discussion.ContentText,
-            //    OwnerUsername = discussion.OwnerUsername,
-            //    OnwerProfileImage = discussion.OnwerProfileImage, //I spelled owner wrong here
-            //    Status = discussion.Status,
-            //    DatePosted = discussion.DatePosted
-            //};
+                DiscussionID = discussion.DiscussionID,
+                Title = discussion.Title,
+                ContentText = discussion.ContentText,
+                OwnerUsername = discussion.OwnerUsername,
+                OnwerProfileImage = discussion.OnwerProfileImage, //I spelled owner wrong here
+                Status = discussion.Status,
+                DatePosted = discussion.DatePosted
+            };
 
-            //return result;
+            return result;
         }
 
         public List<Discussion> GetDiscussionsByUserID(int userID)
@@ -277,41 +279,41 @@ namespace GameBlogApplication.Services
             return theUsersDiscussions;
         }
 
-        public void CreateDiscussion()//DiscussionModel model)
+        public void CreateDiscussion(DiscussionModel model)
         {
             //Create a UserDiscussion when creating a Discussion
             using (var context = new ITPEntities())
             {
-                //Discussion discussion = new Discussion()
-                //{
-                //    Title = model.Title,
-                //    ContentText = model.ContentText,
-                //    OwnerUsername = model.OwnerUsername,
-                //    OnwerProfileImage = model.OnwerProfileImage, //I spelled owner wrong here
-                //    Status = model.Status,
-                //    DatePosted = model.DatePosted
-                //};
+                Discussion discussion = new Discussion()
+                {
+                    Title = model.Title,
+                    ContentText = model.ContentText,
+                    OwnerUsername = model.OwnerUsername,
+                    OnwerProfileImage = model.OnwerProfileImage, //I spelled owner wrong here
+                    Status = model.Status,
+                    DatePosted = model.DatePosted
+                };
 
-                //context.Discussions.Add(discussion);
-                //context.SaveChanges();
-                //model.discussionID = discussion.DiscussionID;
+                context.Discussions.Add(discussion);
+                context.SaveChanges();
+                model.DiscussionID = discussion.DiscussionID;
             }
         }
 
-        public void UpdateDiscussion()//DiscussionModel model) 
+        public void UpdateDiscussion(DiscussionModel model) 
         {
             using (var context = new ITPEntities())
             {
-                //Discussion discussion = context.Discussions.FirstOrDefault(d => d.DiscussionID == model.DiscussionID);
+                Discussion discussion = context.Discussions.FirstOrDefault(d => d.DiscussionID == model.DiscussionID);
 
-                //discussion.Title = model.Title;
-                //discussion.ContentText = model.ContentText;
-                //discussion.OwnerUsername = model.OwnerUsername;
-                //discussion.OnwerProfileImage = model.OnwerProfileImage; //I spelled owner wrong here
-                //discussion.Status = model.Status;
-                //discussion.DatePosted = model.DatePosted;
+                discussion.Title = model.Title;
+                discussion.ContentText = model.ContentText;
+                discussion.OwnerUsername = model.OwnerUsername;
+                discussion.OnwerProfileImage = model.OnwerProfileImage; //I spelled owner wrong here
+                discussion.Status = model.Status;
+                discussion.DatePosted = model.DatePosted;
 
-                //context.SaveChanges();
+                context.SaveChanges();
             }
         }
 
@@ -325,6 +327,5 @@ namespace GameBlogApplication.Services
                 context.SaveChanges();
             }
         }
-
     }
 }
