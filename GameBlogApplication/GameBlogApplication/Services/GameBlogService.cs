@@ -1,8 +1,5 @@
-﻿using GameBlogService.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 
 namespace GameBlogApplication.Services
@@ -33,7 +30,7 @@ namespace GameBlogApplication.Services
          */
 
             //Users
-        public UserModel GetUserByID(int id)
+        public User GetUserByID(int id)
         {
             User user = null;
             using (var context = new ITPEntities())
@@ -46,7 +43,7 @@ namespace GameBlogApplication.Services
                 return null;
             }
 
-            UserModel result = new UserModel()
+            User result = new User()
             {
                 AccountID = user.AccountID,
                 FirstName = user.FirstName,
@@ -63,7 +60,7 @@ namespace GameBlogApplication.Services
             return result;
         }
 
-        public void CreateUser(UserModel model)
+        public void CreateUser(User model)
         {
             using (var context = new ITPEntities())
             {
@@ -88,7 +85,7 @@ namespace GameBlogApplication.Services
             }
         }
 
-        public void UpdateUser(UserModel model)
+        public void UpdateUser(User model)
         {
             using (var context = new ITPEntities())
             {
@@ -140,7 +137,7 @@ namespace GameBlogApplication.Services
 
         //UserDiscussions
 
-        public UserDiscussionModel GetUserDiscussionByID(int id)
+        public UserDiscussion GetUserDiscussionByID(int id)
         {
             UserDiscussion ud = null;
 
@@ -154,12 +151,12 @@ namespace GameBlogApplication.Services
                 return null;
             }
 
-            UserDiscussionModel result = new UserDiscussionModel()
+            UserDiscussion result = new UserDiscussion()
             {
 
                 UserDiscussionID = ud.UserDiscussionID,
-                AccountID = ud.AccountId,
-                DiscussionID = ud.DiscussionId
+                AccountId = ud.AccountId,
+                DiscussionId = ud.DiscussionId
             };
 
             return result;
@@ -180,7 +177,7 @@ namespace GameBlogApplication.Services
             return userDiscussionWithUser;
         }
 
-        public void CreateUserDiscussion(UserDiscussionModel model, int userID, int discussionID)
+        public void CreateUserDiscussion(UserDiscussion model, int userID, int discussionID)
         {
             using (var context = new ITPEntities())
             {
@@ -228,7 +225,7 @@ namespace GameBlogApplication.Services
         }
 
         //Discussions
-        public DiscussionModel GetDiscussionByID(int id)
+        public Discussion GetDiscussionByID(int id)
         {
             Discussion discussion = null;
 
@@ -241,7 +238,7 @@ namespace GameBlogApplication.Services
                 return null;
             }
 
-            DiscussionModel result = new DiscussionModel()
+            Discussion result = new Discussion()
             {
 
                 DiscussionID = discussion.DiscussionID,
@@ -279,7 +276,7 @@ namespace GameBlogApplication.Services
             return theUsersDiscussions;
         }
 
-        public void CreateDiscussion(DiscussionModel model)
+        public void CreateDiscussion(Discussion model)
         {
             //Create a UserDiscussion when creating a Discussion
             using (var context = new ITPEntities())
@@ -300,7 +297,7 @@ namespace GameBlogApplication.Services
             }
         }
 
-        public void UpdateDiscussion(DiscussionModel model) 
+        public void UpdateDiscussion(Discussion model) 
         {
             using (var context = new ITPEntities())
             {
