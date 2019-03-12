@@ -5,166 +5,70 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ITPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Comment">
+        <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentID" />
           </Key>
           <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ContentText" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerUsername" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="OwnerProfileImage" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="DatePosted" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Discussion">
+        <EntityType Name="DiscussionComments">
+          <Key>
+            <PropertyRef Name="DiscussionCommentID" />
+          </Key>
+          <Property Name="DiscussionCommentID" Type="int" Nullable="false" />
+          <Property Name="DiscussionID" Type="int" Nullable="false" />
+          <Property Name="CommentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discussions">
           <Key>
             <PropertyRef Name="DiscussionID" />
           </Key>
           <Property Name="DiscussionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="ContentText" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="DatePosted" Type="datetime" Nullable="false" />
+          <Property Name="OwnerUsername" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="OnwerProfileImage" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ITP.dbo.DiscussionComment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="DiscussionComment">
-          <Key>
-            <PropertyRef Name="DiscussionID" />
-            <PropertyRef Name="CommentID" />
-          </Key>
-          <Property Name="DiscussionID" Type="int" Nullable="false" />
-          <Property Name="CommentID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="NewDiscussion">
-          <Key>
-            <PropertyRef Name="DiscussionID" />
-          </Key>
-          <Property Name="DiscussionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ContentText" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="DatePosted" Type="date" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__Discussio__Comme__44FF419A">
-          <End Role="Comment" Type="Self.Comment" Multiplicity="1" />
-          <End Role="DiscussionComment" Type="Self.DiscussionComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comment">
-              <PropertyRef Name="CommentID" />
-            </Principal>
-            <Dependent Role="DiscussionComment">
-              <PropertyRef Name="CommentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Discussio__Discu__440B1D61">
-          <End Role="Discussion" Type="Self.Discussion" Multiplicity="1" />
-          <End Role="DiscussionComment" Type="Self.DiscussionComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discussion">
-              <PropertyRef Name="DiscussionID" />
-            </Principal>
-            <Dependent Role="DiscussionComment">
-              <PropertyRef Name="DiscussionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ITPModelStoreContainer">
-          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Discussion" EntityType="Self.Discussion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NewDiscussion" EntityType="Self.NewDiscussion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DiscussionComment" EntityType="Self.DiscussionComment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [DiscussionComment].[DiscussionID] AS [DiscussionID], 
-    [DiscussionComment].[CommentID] AS [CommentID]
-    FROM [dbo].[DiscussionComment] AS [DiscussionComment]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__Discussio__Comme__44FF419A" Association="Self.FK__Discussio__Comme__44FF419A">
-            <End Role="Comment" EntitySet="Comment" />
-            <End Role="DiscussionComment" EntitySet="DiscussionComment" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Discussio__Discu__440B1D61" Association="Self.FK__Discussio__Discu__440B1D61">
-            <End Role="Discussion" EntitySet="Discussion" />
-            <End Role="DiscussionComment" EntitySet="DiscussionComment" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="ITPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="CommentID" />
-          </Key>
-          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContentText" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OwnerUsername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OwnerProfileImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="DiscussionComments" Relationship="Self.FK_DiscussionComments_Comments" FromRole="Comments" ToRole="DiscussionComments" />
-          <NavigationProperty Name="UserComments" Relationship="Self.FK_UserComments_Comments" FromRole="Comments" ToRole="UserComments" />
-        </EntityType>
-        <EntityType Name="DiscussionComment">
-          <Key>
-            <PropertyRef Name="DiscussionCommentID" />
-          </Key>
-          <Property Name="DiscussionCommentID" Type="Int32" Nullable="false" />
-          <Property Name="DiscussionID" Type="Int32" Nullable="false" />
-          <Property Name="CommentID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_DiscussionComments_Comments" FromRole="DiscussionComments" ToRole="Comments" />
-          <NavigationProperty Name="Discussion" Relationship="Self.FK_DiscussionComments_Discussions" FromRole="DiscussionComments" ToRole="Discussions" />
-        </EntityType>
-        <EntityType Name="Discussion">
-          <Key>
-            <PropertyRef Name="DiscussionID" />
-          </Key>
-          <Property Name="DiscussionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContentText" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OwnerUsername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OnwerProfileImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="DiscussionComments" Relationship="Self.FK_DiscussionComments_Discussions" FromRole="Discussions" ToRole="DiscussionComments" />
-          <NavigationProperty Name="UserDiscussions" Relationship="Self.FK_UserDiscussion_Discussions" FromRole="Discussions" ToRole="UserDiscussion" />
+          <Property Name="DatePosted" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="AccountID" />
           </Key>
-          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ProfileImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Bio" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserComments" Relationship="Self.FK_UserComments_User" FromRole="User" ToRole="UserComments" />
-          <NavigationProperty Name="UserDiscussions" Relationship="Self.FK_UserDiscussion_User" FromRole="User" ToRole="UserDiscussion" />
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="Bio" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <EntityType Name="UserComment">
+        <EntityType Name="UserComments">
           <Key>
             <PropertyRef Name="UserCommentID" />
           </Key>
-          <Property Name="UserCommentID" Type="Int32" Nullable="false" />
-          <Property Name="AccountID" Type="Int32" Nullable="false" />
-          <Property Name="CommentID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_UserComments_Comments" FromRole="UserComments" ToRole="Comments" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserComments_User" FromRole="UserComments" ToRole="User" />
+          <Property Name="UserCommentID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="CommentID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserDiscussion">
           <Key>
             <PropertyRef Name="UserDiscussionID" />
           </Key>
-          <Property Name="AccountId" Type="Int32" Nullable="false" />
-          <Property Name="DiscussionId" Type="Int32" Nullable="false" />
-          <Property Name="UserDiscussionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Discussion" Relationship="Self.FK_UserDiscussion_Discussions" FromRole="UserDiscussion" ToRole="Discussions" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserDiscussion_User" FromRole="UserDiscussion" ToRole="User" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="DiscussionId" Type="int" Nullable="false" />
+          <Property Name="UserDiscussionID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_DiscussionComments_Comments">
-          <End Role="Comments" Type="Self.Comment" Multiplicity="1" />
-          <End Role="DiscussionComments" Type="Self.DiscussionComment" Multiplicity="*" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="1" />
+          <End Role="DiscussionComments" Type="Self.DiscussionComments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comments">
               <PropertyRef Name="CommentID" />
@@ -174,21 +78,9 @@ warning 6002: The table/view 'ITP.dbo.DiscussionComment' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserComments_Comments">
-          <End Role="Comments" Type="Self.Comment" Multiplicity="1" />
-          <End Role="UserComments" Type="Self.UserComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comments">
-              <PropertyRef Name="CommentID" />
-            </Principal>
-            <Dependent Role="UserComments">
-              <PropertyRef Name="CommentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DiscussionComments_Discussions">
-          <End Role="Discussions" Type="Self.Discussion" Multiplicity="1" />
-          <End Role="DiscussionComments" Type="Self.DiscussionComment" Multiplicity="*" />
+          <End Role="Discussions" Type="Self.Discussions" Multiplicity="1" />
+          <End Role="DiscussionComments" Type="Self.DiscussionComments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Discussions">
               <PropertyRef Name="DiscussionID" />
@@ -198,8 +90,32 @@ warning 6002: The table/view 'ITP.dbo.DiscussionComment' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserComments_Comments">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="1" />
+          <End Role="UserComments" Type="Self.UserComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="UserComments">
+              <PropertyRef Name="CommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserComments_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserComments" Type="Self.UserComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserComments">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserDiscussion_Discussions">
-          <End Role="Discussions" Type="Self.Discussion" Multiplicity="1" />
+          <End Role="Discussions" Type="Self.Discussions" Multiplicity="1" />
           <End Role="UserDiscussion" Type="Self.UserDiscussion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Discussions">
@@ -207,18 +123,6 @@ warning 6002: The table/view 'ITP.dbo.DiscussionComment' does not have a primary
             </Principal>
             <Dependent Role="UserDiscussion">
               <PropertyRef Name="DiscussionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserComments_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserComments" Type="Self.UserComment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="AccountID" />
-            </Principal>
-            <Dependent Role="UserComments">
-              <PropertyRef Name="AccountID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -234,77 +138,218 @@ warning 6002: The table/view 'ITP.dbo.DiscussionComment' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ITPEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="DiscussionComments" EntityType="Self.DiscussionComment" />
-          <EntitySet Name="Discussions" EntityType="Self.Discussion" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="UserComments" EntityType="Self.UserComment" />
-          <EntitySet Name="UserDiscussions" EntityType="Self.UserDiscussion" />
+        <EntityContainer Name="ITPModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscussionComments" EntityType="Self.DiscussionComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discussions" EntityType="Self.Discussions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserComments" EntityType="Self.UserComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDiscussion" EntityType="Self.UserDiscussion" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_DiscussionComments_Comments" Association="Self.FK_DiscussionComments_Comments">
             <End Role="Comments" EntitySet="Comments" />
+            <End Role="DiscussionComments" EntitySet="DiscussionComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscussionComments_Discussions" Association="Self.FK_DiscussionComments_Discussions">
+            <End Role="Discussions" EntitySet="Discussions" />
             <End Role="DiscussionComments" EntitySet="DiscussionComments" />
           </AssociationSet>
           <AssociationSet Name="FK_UserComments_Comments" Association="Self.FK_UserComments_Comments">
             <End Role="Comments" EntitySet="Comments" />
             <End Role="UserComments" EntitySet="UserComments" />
           </AssociationSet>
-          <AssociationSet Name="FK_DiscussionComments_Discussions" Association="Self.FK_DiscussionComments_Discussions">
-            <End Role="Discussions" EntitySet="Discussions" />
-            <End Role="DiscussionComments" EntitySet="DiscussionComments" />
+          <AssociationSet Name="FK_UserComments_User" Association="Self.FK_UserComments_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserComments" EntitySet="UserComments" />
           </AssociationSet>
           <AssociationSet Name="FK_UserDiscussion_Discussions" Association="Self.FK_UserDiscussion_Discussions">
             <End Role="Discussions" EntitySet="Discussions" />
-            <End Role="UserDiscussion" EntitySet="UserDiscussions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserComments_User" Association="Self.FK_UserComments_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="UserComments" EntitySet="UserComments" />
+            <End Role="UserDiscussion" EntitySet="UserDiscussion" />
           </AssociationSet>
           <AssociationSet Name="FK_UserDiscussion_User" Association="Self.FK_UserDiscussion_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserDiscussion" EntitySet="UserDiscussion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ITPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="ITPModel.Comment" />
+          <EntitySet Name="DiscussionComments" EntityType="ITPModel.DiscussionComment" />
+          <EntitySet Name="Discussions" EntityType="ITPModel.Discussion" />
+          <EntitySet Name="Users" EntityType="ITPModel.User" />
+          <EntitySet Name="UserComments" EntityType="ITPModel.UserComment" />
+          <EntitySet Name="UserDiscussions" EntityType="ITPModel.UserDiscussion" />
+          <AssociationSet Name="FK_DiscussionComments_Comments" Association="ITPModel.FK_DiscussionComments_Comments">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="DiscussionComment" EntitySet="DiscussionComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserComments_Comments" Association="ITPModel.FK_UserComments_Comments">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="UserComment" EntitySet="UserComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscussionComments_Discussions" Association="ITPModel.FK_DiscussionComments_Discussions">
+            <End Role="Discussion" EntitySet="Discussions" />
+            <End Role="DiscussionComment" EntitySet="DiscussionComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDiscussion_Discussions" Association="ITPModel.FK_UserDiscussion_Discussions">
+            <End Role="Discussion" EntitySet="Discussions" />
+            <End Role="UserDiscussion" EntitySet="UserDiscussions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserComments_User" Association="ITPModel.FK_UserComments_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserComment" EntitySet="UserComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDiscussion_User" Association="ITPModel.FK_UserDiscussion_User">
             <End Role="User" EntitySet="Users" />
             <End Role="UserDiscussion" EntitySet="UserDiscussions" />
           </AssociationSet>
-          <EntitySet Name="Comment1" EntityType="ITPModel.Comment1" />
-          <EntitySet Name="Discussion1" EntityType="ITPModel.Discussion1" />
-          <EntitySet Name="NewDiscussions" EntityType="ITPModel.NewDiscussion" />
-          <AssociationSet Name="DiscussionComment1" Association="ITPModel.DiscussionComment1">
-            <End Role="Comment1" EntitySet="Comment1" />
-            <End Role="Discussion1" EntitySet="Discussion1" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Comment1">
+        <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="CommentID" />
           </Key>
           <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ContentText" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerUsername" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerProfileImage" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Discussions" Relationship="ITPModel.DiscussionComment1" FromRole="Comment1" ToRole="Discussion1" />
+          <NavigationProperty Name="DiscussionComments" Relationship="ITPModel.FK_DiscussionComments_Comments" FromRole="Comment" ToRole="DiscussionComment" />
+          <NavigationProperty Name="UserComments" Relationship="ITPModel.FK_UserComments_Comments" FromRole="Comment" ToRole="UserComment" />
         </EntityType>
-        <EntityType Name="Discussion1">
+        <EntityType Name="DiscussionComment">
+          <Key>
+            <PropertyRef Name="DiscussionCommentID" />
+          </Key>
+          <Property Name="DiscussionCommentID" Type="Int32" Nullable="false" />
+          <Property Name="DiscussionID" Type="Int32" Nullable="false" />
+          <Property Name="CommentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="ITPModel.FK_DiscussionComments_Comments" FromRole="DiscussionComment" ToRole="Comment" />
+          <NavigationProperty Name="Discussion" Relationship="ITPModel.FK_DiscussionComments_Discussions" FromRole="DiscussionComment" ToRole="Discussion" />
+        </EntityType>
+        <EntityType Name="Discussion">
           <Key>
             <PropertyRef Name="DiscussionID" />
           </Key>
           <Property Name="DiscussionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ContentText" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OwnerUsername" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OnwerProfileImage" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Comments" Relationship="ITPModel.DiscussionComment1" FromRole="Discussion1" ToRole="Comment1" />
+          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DiscussionComments" Relationship="ITPModel.FK_DiscussionComments_Discussions" FromRole="Discussion" ToRole="DiscussionComment" />
+          <NavigationProperty Name="UserDiscussions" Relationship="ITPModel.FK_UserDiscussion_Discussions" FromRole="Discussion" ToRole="UserDiscussion" />
         </EntityType>
-        <EntityType Name="NewDiscussion">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="DiscussionID" />
+            <PropertyRef Name="AccountID" />
           </Key>
-          <Property Name="DiscussionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ContentText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProfileImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Bio" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserComments" Relationship="ITPModel.FK_UserComments_User" FromRole="User" ToRole="UserComment" />
+          <NavigationProperty Name="UserDiscussions" Relationship="ITPModel.FK_UserDiscussion_User" FromRole="User" ToRole="UserDiscussion" />
         </EntityType>
-        <Association Name="DiscussionComment1">
-          <End Type="ITPModel.Comment1" Role="Comment1" Multiplicity="*" />
-          <End Type="ITPModel.Discussion1" Role="Discussion1" Multiplicity="*" />
+        <EntityType Name="UserComment">
+          <Key>
+            <PropertyRef Name="UserCommentID" />
+          </Key>
+          <Property Name="UserCommentID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="CommentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="ITPModel.FK_UserComments_Comments" FromRole="UserComment" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="ITPModel.FK_UserComments_User" FromRole="UserComment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserDiscussion">
+          <Key>
+            <PropertyRef Name="UserDiscussionID" />
+          </Key>
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="DiscussionId" Type="Int32" Nullable="false" />
+          <Property Name="UserDiscussionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discussion" Relationship="ITPModel.FK_UserDiscussion_Discussions" FromRole="UserDiscussion" ToRole="Discussion" />
+          <NavigationProperty Name="User" Relationship="ITPModel.FK_UserDiscussion_User" FromRole="UserDiscussion" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_DiscussionComments_Comments">
+          <End Type="ITPModel.Comment" Role="Comment" Multiplicity="1" />
+          <End Type="ITPModel.DiscussionComment" Role="DiscussionComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="DiscussionComment">
+              <PropertyRef Name="CommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserComments_Comments">
+          <End Type="ITPModel.Comment" Role="Comment" Multiplicity="1" />
+          <End Type="ITPModel.UserComment" Role="UserComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="UserComment">
+              <PropertyRef Name="CommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscussionComments_Discussions">
+          <End Type="ITPModel.Discussion" Role="Discussion" Multiplicity="1" />
+          <End Type="ITPModel.DiscussionComment" Role="DiscussionComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discussion">
+              <PropertyRef Name="DiscussionID" />
+            </Principal>
+            <Dependent Role="DiscussionComment">
+              <PropertyRef Name="DiscussionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDiscussion_Discussions">
+          <End Type="ITPModel.Discussion" Role="Discussion" Multiplicity="1" />
+          <End Type="ITPModel.UserDiscussion" Role="UserDiscussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discussion">
+              <PropertyRef Name="DiscussionID" />
+            </Principal>
+            <Dependent Role="UserDiscussion">
+              <PropertyRef Name="DiscussionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserComments_User">
+          <End Type="ITPModel.User" Role="User" Multiplicity="1" />
+          <End Type="ITPModel.UserComment" Role="UserComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserComment">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDiscussion_User">
+          <End Type="ITPModel.User" Role="User" Multiplicity="1" />
+          <End Type="ITPModel.UserDiscussion" Role="UserDiscussion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserDiscussion">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -312,44 +357,73 @@ warning 6002: The table/view 'ITP.dbo.DiscussionComment' does not have a primary
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ITPModelStoreContainer" CdmEntityContainer="ITPEntities">
-          <EntitySetMapping Name="Comment1">
-            <EntityTypeMapping TypeName="ITPModel.Comment1">
-              <MappingFragment StoreEntitySet="Comment">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="ITPModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
                 <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="OwnerProfileImage" ColumnName="OwnerProfileImage" />
+                <ScalarProperty Name="OwnerUsername" ColumnName="OwnerUsername" />
                 <ScalarProperty Name="ContentText" ColumnName="ContentText" />
                 <ScalarProperty Name="CommentID" ColumnName="CommentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Discussion1">
-            <EntityTypeMapping TypeName="ITPModel.Discussion1">
-              <MappingFragment StoreEntitySet="Discussion">
+          <EntitySetMapping Name="DiscussionComments">
+            <EntityTypeMapping TypeName="ITPModel.DiscussionComment">
+              <MappingFragment StoreEntitySet="DiscussionComments">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="DiscussionID" ColumnName="DiscussionID" />
+                <ScalarProperty Name="DiscussionCommentID" ColumnName="DiscussionCommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discussions">
+            <EntityTypeMapping TypeName="ITPModel.Discussion">
+              <MappingFragment StoreEntitySet="Discussions">
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="OnwerProfileImage" ColumnName="OnwerProfileImage" />
+                <ScalarProperty Name="OwnerUsername" ColumnName="OwnerUsername" />
                 <ScalarProperty Name="ContentText" ColumnName="ContentText" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="DiscussionID" ColumnName="DiscussionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NewDiscussions">
-            <EntityTypeMapping TypeName="ITPModel.NewDiscussion">
-              <MappingFragment StoreEntitySet="NewDiscussion">
-                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
-                <ScalarProperty Name="ContentText" ColumnName="ContentText" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="DiscussionID" ColumnName="DiscussionID" />
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ITPModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="DiscussionComment1" TypeName="ITPModel.DiscussionComment1" StoreEntitySet="DiscussionComment">
-            <EndProperty Name="Discussion1">
-              <ScalarProperty Name="DiscussionID" ColumnName="DiscussionID" />
-            </EndProperty>
-            <EndProperty Name="Comment1">
-              <ScalarProperty Name="CommentID" ColumnName="CommentID" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="UserComments">
+            <EntityTypeMapping TypeName="ITPModel.UserComment">
+              <MappingFragment StoreEntitySet="UserComments">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="UserCommentID" ColumnName="UserCommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDiscussions">
+            <EntityTypeMapping TypeName="ITPModel.UserDiscussion">
+              <MappingFragment StoreEntitySet="UserDiscussion">
+                <ScalarProperty Name="UserDiscussionID" ColumnName="UserDiscussionID" />
+                <ScalarProperty Name="DiscussionId" ColumnName="DiscussionId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

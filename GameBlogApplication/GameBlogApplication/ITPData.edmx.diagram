@@ -5,22 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d36c5b9dd5c34f75b4a7852467ac5245" Name="Diagram1">
-        <EntityTypeShape EntityType="ITPModel.Comment" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITPModel.DiscussionComment" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITPModel.Discussion" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITPModel.User" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITPModel.UserComment" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITPModel.UserDiscussion" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="ITPModel.FK_DiscussionComments_Comments" ManuallyRouted="false" />
-        <AssociationConnector Association="ITPModel.FK_UserComments_Comments" ManuallyRouted="false" />
-        <AssociationConnector Association="ITPModel.FK_DiscussionComments_Discussions" ManuallyRouted="false" />
-        <AssociationConnector Association="ITPModel.FK_UserDiscussion_Discussions" ManuallyRouted="false" />
-        <AssociationConnector Association="ITPModel.FK_UserComments_User" ManuallyRouted="false" />
-        <AssociationConnector Association="ITPModel.FK_UserDiscussion_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ITPModel.Comment1" Width="1.5" PointX="5.375" PointY="1.125" />
-        <EntityTypeShape EntityType="ITPModel.Discussion1" Width="1.5" PointX="7.625" PointY="0.875" />
-        <EntityTypeShape EntityType="ITPModel.NewDiscussion" Width="1.5" PointX="5.375" PointY="4.75" />
-        <AssociationConnector Association="ITPModel.DiscussionComment1" />
+        <EntityTypeShape EntityType="ITPModel.Comment" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="ITPModel.DiscussionComment" Width="1.5" PointX="3" PointY="10" />
+        <EntityTypeShape EntityType="ITPModel.Discussion" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="ITPModel.User" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="ITPModel.UserComment" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ITPModel.UserDiscussion" Width="1.5" PointX="3" PointY="3.75" />
+        <AssociationConnector Association="ITPModel.FK_DiscussionComments_Comments" />
+        <AssociationConnector Association="ITPModel.FK_UserComments_Comments" />
+        <AssociationConnector Association="ITPModel.FK_DiscussionComments_Discussions" />
+        <AssociationConnector Association="ITPModel.FK_UserDiscussion_Discussions" />
+        <AssociationConnector Association="ITPModel.FK_UserComments_User" />
+        <AssociationConnector Association="ITPModel.FK_UserDiscussion_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

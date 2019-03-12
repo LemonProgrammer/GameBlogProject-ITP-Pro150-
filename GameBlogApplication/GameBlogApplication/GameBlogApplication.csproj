@@ -178,16 +178,10 @@
     <Compile Include="Comment.cs">
       <DependentUpon>ITPData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Comment1.cs">
-      <DependentUpon>ITPData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Discussion.cs">
-      <DependentUpon>ITPData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Discussion1.cs">
       <DependentUpon>ITPData.tt</DependentUpon>
     </Compile>
     <Compile Include="DiscussionComment.cs">
@@ -214,9 +208,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="NewDiscussion.cs">
-      <DependentUpon>ITPData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GameBlogService.cs" />
     <Compile Include="Startup.cs" />
@@ -315,6 +306,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

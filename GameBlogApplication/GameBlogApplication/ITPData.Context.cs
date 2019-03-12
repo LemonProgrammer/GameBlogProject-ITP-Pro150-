@@ -31,8 +31,5 @@ namespace GameBlogApplication
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserComment> UserComments { get; set; }
         public virtual DbSet<UserDiscussion> UserDiscussions { get; set; }
-        public virtual DbSet<Comment1> Comment1 { get; set; }
-        public virtual DbSet<Discussion1> Discussion1 { get; set; }
-        public virtual DbSet<NewDiscussion> NewDiscussions { get; set; }
     }
 }

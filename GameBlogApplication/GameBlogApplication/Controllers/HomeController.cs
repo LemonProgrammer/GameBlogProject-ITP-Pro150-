@@ -27,5 +27,11 @@ namespace GameBlogApplication.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ViewResult SearchResults()
+        {
+            return View();
+        }
     }
 }

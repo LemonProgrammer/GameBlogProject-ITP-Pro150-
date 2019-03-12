@@ -30,6 +30,12 @@
         </div>
     </div>
     <div class="container body-content">
+        <div class="search_container">
+            <form action="/Home/SearchResults" method="post">
+                <input type="search" placeholder="Search..." name="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
         @RenderBody()
         <hr />
         <footer>
